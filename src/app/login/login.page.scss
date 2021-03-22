@@ -1,0 +1,83 @@
+@import "../../assets/style/style.scss";
+
+ion-content{
+
+  --ion-background-color:#F2F2F2;
+  ion-card, .container
+  {
+    @extend %ion-card;
+  }
+  .logo{
+    border-radius: 20px;
+  }
+  img
+  {
+    margin-left: 25%;
+  }
+
+  h1
+  {
+    text-align: center;
+    @extend %font-text;
+    font-size: 25px;
+    color: $title-color;
+  }
+
+  .bottom
+  {
+    border-bottom: 5px solid $color-secondary;
+    width: 50%;
+    margin-left: 25%;
+  }
+  .login
+  {
+    margin-top: 12%;
+    text-align: center;
+  }
+  .item{
+    background-color: rgba(255,255,255,0.0);
+  }
+
+  .bottom
+  {
+    border-bottom: 5px solid $color-secondary;
+    background-color: 5px solid $color-secondary;
+    width: 50%;
+    margin-left: 25%;
+  }
+  h1
+  {
+    text-align: center;
+    @extend %font-text;
+    font-size: 25px;
+    color: $title-color;
+  }
+
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
+  .text{
+    text-align: center;
+  }
+
+  ion-button {
+    margin-top: 60px;
+    height: 48px;
+    font-size: 18px;
+    text-transform: initial;
+    border-radius: 50px;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+    --box-shadow: none;
+    background-color: #9de1fe;
+  }
+  .eye{
+    padding-top: 15px;
+    margin-left: 100px;
+  }
+  .text-danger{
+    color: red;
+  }
+.form{
+  margin-top: 8%;
+}
+}

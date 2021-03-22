@@ -1,0 +1,78 @@
+<ion-content class="ion-margin">
+  <div class="container" position="stacked">
+    <ion-card>
+      <ion-card-content>
+        <img src="../assets/images/logoSA.png" alt="" class="logo">
+        <ion-row>
+          <div class="home">
+            <ion-icon name="home" [routerLink]="['/home']" size="large"></ion-icon>
+          </div>
+          <ion-title class="login">Mes commissions</ion-title>
+          <div class="commission">
+            <ion-icon name="cash" style="zoom:2.0;" class="ion-float-right"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-card-content>
+      <div class="bottom"></div>
+    </ion-card>
+  </div>
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select #val (ionChange)="selectAll(val)" value="depot">
+      <ion-select-option [value]="'depot'">Depot</ion-select-option>
+      <ion-select-option [value]="'retrait'">Retrait</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-grid class="ion-margin">
+    <ion-row class="table">
+      <ion-col>Date</ion-col>
+      <ion-col>Frais</ion-col>
+      <ion-col>Montant</ion-col>
+    </ion-row>
+    <ion-row  *ngFor="let com of commission" >
+      <ion-col>
+          <ion-text *ngIf="Type.value == 'depot'; else refs">{{com.date_depot | date: 'dd:MM:y'}}</ion-text>
+          <ng-template #refs>{{com.date_retrait | date: 'dd:MM:y'}}</ng-template>
+      </ion-col>
+      <ion-col>
+        <ion-text *ngIf="Type.value == 'depot'; else ref">{{com.frais_depot}}</ion-text>
+        <ng-template #ref>{{com.frais_retrait}}</ng-template>
+      </ion-col>
+      <ion-col>{{com.montant + ' fcfa'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item lines="none">
+    <ion-badge color="primary" size="small" slot="end"  placeholder="Total">
+      {{ Type.value =='depot'? ' Total frais depot:' +totale+ 'fcfa': 'Total frais retrait:' +totale+ 'fcfa'}}
+    </ion-badge>
+  </ion-item>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="nombrePage==0">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<div>
+  <ion-grid class="btn-group ion-text-center">
+    <ion-row>
+      <ion-col size="3">
+        <ion-icon name="home" size="large" [routerLink]="['/home']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="time" size="large" [routerLink]="['/transactions-users']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="cash" size="large" [routerLink]="['/commission']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="calculator" size="large" [routerLink]="['/calculateur']"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
+

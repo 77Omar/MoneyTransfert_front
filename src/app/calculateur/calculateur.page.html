@@ -1,0 +1,72 @@
+<ion-content>
+  <ion-content class="ion-margin">
+    <div class="container" position="stacked">
+      <ion-card>
+        <ion-card-content>
+          <img src="../assets/images/logoSA.png" alt="" class="logo">
+          <ion-row>
+            <div class="home">
+              <ion-icon name="home" [routerLink]="['/home']" size="large"></ion-icon>
+            </div>
+            <ion-title class="login">Calculateur de frais</ion-title>
+            <div class="commission">
+              <ion-icon name="calculator-outline" style="zoom:2.0;" class="ion-float-right"></ion-icon>
+            </div>
+          </ion-row>
+        </ion-card-content>
+        <div class="bottom"></div>
+      </ion-card>
+    </div>
+    <br>
+  <form [formGroup]="calculatorForm" #myform="ngForm" (ngSubmit)="calculFrais()">
+    <ion-item>
+      <ion-label position="floating">Type de Transaction</ion-label>
+      <ion-select placeholder="choisir le type de transaction" interface="popover" formControlName="type">
+        <ion-select-option value="depot">depot</ion-select-option>
+        <ion-select-option value="retrait">retrait</ion-select-option>
+      </ion-select>
+      <small class="text-danger"
+             *ngIf="calculatorForm.get('type').hasError('required') && (myform.submitted ||(calculatorForm.get('type').touched)) ">
+        Type transaction est requis.
+      </small>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Montant</ion-label>
+      <ion-input type="text" formControlName="montant"></ion-input>
+      <small class="text-danger"
+             *ngIf="calculatorForm.get('montant').hasError('required') && (myform.submitted ||calculatorForm.get('montant').touched) ">
+        Le montant est requis.
+      </small>
+      <small class="text-danger"
+             *ngIf="calculatorForm.get('montant').hasError('pattern') && (myform.submitted || calculatorForm.get('montant').touched) ">
+        entrer un montant positif.
+      </small>
+      <small class="text-danger"
+             *ngIf="calculatorForm.get('montant').hasError('min') && (myform.submitted || calculatorForm.get('montant').touched) ">
+        le montant minimal doit etre egale à 1.
+      </small>
+    </ion-item>
+    <section class="ion-margin-top">
+      <ion-button  [disabled]="calculatorForm.invalid" type="submit"  color="secondary" expand="block">Calculer</ion-button>
+    </section>
+  </form>
+</ion-content>
+<div>
+  <ion-grid class="btn-group ion-text-center">
+    <ion-row>
+      <ion-col size="3">
+        <ion-icon name="home" size="large" [routerLink]="['/home']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="time" size="large" [routerLink]="['/transactions-users']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="cash" size="large" [routerLink]="['/commission']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="calculator" size="large" [routerLink]="['/calculateur']"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

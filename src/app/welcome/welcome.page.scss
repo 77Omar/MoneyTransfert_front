@@ -1,0 +1,25 @@
+ion-content{
+  --background: url('../../assets/images/avatar.jpg') center center / cover;
+  .logo{
+    display: block;
+    margin: auto;
+    width: 50%;
+    margin-top: 25vh;
+  }
+  p{
+    background-color: white;
+    border-radius: 100%;
+    width: 100px;
+    height: 180px;
+  }
+  ion-button {
+    margin-top: 60px;
+    height: 48px;
+    font-size: 18px;
+    border-radius: 50px;
+    --box-shadow: none;
+    background-color: #9de1fe;
+    width: 150px;
+    margin-left: 30%;
+  }
+}

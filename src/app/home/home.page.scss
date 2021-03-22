@@ -1,0 +1,63 @@
+@import "../../assets/style/style.scss";
+
+ion-content {
+  --ion-background-color:#F2F2F2;
+  ion-card, .container
+  {
+    @extend %ion-card;
+  }
+  .logo{
+    border-radius: 20px;
+  }
+  img
+  {
+    margin-left: 25%;
+  }
+
+  h1
+  {
+    text-align: center;
+    @extend %font-text;
+    font-size: 25px;
+    color: $title-color;
+  }
+
+  .bottom
+  {
+    border-bottom: 5px solid $color-secondary;
+    width: 50%;
+    margin-left: 25%;
+  }
+  .login
+  {
+    margin-top: 12%;
+    text-align: center;
+  }
+  .commission{
+    color: #9de1fe;
+    padding-top: 40px;
+  }
+  ion-item{
+    --background: transparent;
+    color:black;
+    width: 100%;
+    --min-height: 40px;
+  }
+  ion-list{
+    background-color: transparent;
+
+  }
+  :host{
+    --min-height: 39px;
+  }
+  .eye{
+    padding-top: 15px;
+  }
+}
+.btn-group{
+  color: #bfbfbf;
+}
+.solde{
+ background-color: #F2F2F2;
+  border-radius: 20px;
+}

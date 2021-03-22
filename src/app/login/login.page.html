@@ -1,0 +1,55 @@
+<ion-content class="bg-image">
+  <div class="container" position="stacked">
+    <ion-card>
+      <ion-card-content>
+        <img src="../assets/images/logoSA.png" alt="" class="logo">
+        <ion-col>
+          <ion-title class="login">login</ion-title>
+        </ion-col>
+      </ion-card-content>
+      <div class="bottom"></div>
+    </ion-card>
+  </div>
+  <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" name="loginForm" #form="ngForm">
+  <div class="form">
+    <ion-list inset class="list">
+      <ion-item class="item">
+        <ion-label  style="font-size: 12px" position="stacked">Email:</ion-label>
+        <ion-input type="text" placeholder="Entrer email"
+                   name="email"
+                   [(ngModel)]="userData.email"
+                   formControlName="email"
+        ></ion-input>
+        <small class="text-danger" *ngIf="loginForm.get('email').hasError('required') && (form.submitted || loginForm.get('email').touched) " >Le email est requis</small>
+      </ion-item>
+
+      <ion-item class="item">
+        <ion-row id="pass">
+          <ion-col>
+        <ion-label style="font-size: 12px" position="stacked">Password:</ion-label>
+        <ion-input type="password"
+                   name="password"
+                   [(ngModel)]="userData.password"
+                   formControlName="password"
+                   placeholder="Entrer password"></ion-input>
+            <small class="text-danger" *ngIf="loginForm.get('password').hasError('required') && (form.submitted || loginForm.get('password').touched) " >Le password est requis</small>
+            <small class="text-danger" *ngIf="loginForm.get('password').hasError('minlength')">
+              La longueur password de ce champ est de 6 caractères.
+            </small>
+          </ion-col>
+        <div class="eye">
+          <a href=""><ion-icon name="eye-outline"></ion-icon></a>
+        </div>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+  <p class="text" style="font-family: open-sans; font-size:14px; color: #bfbfbf">
+    Forget your password?
+  </p>
+
+  <div>
+    <ion-button [disabled]="!loginForm.valid" type="submit" color="secondary" expand="block" shape="round">Connexion</ion-button>
+  </div>
+  </form>
+</ion-content>

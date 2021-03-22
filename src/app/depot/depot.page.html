@@ -1,0 +1,126 @@
+<ion-content>
+  <div class="container" position="stacked">
+    <ion-card>
+      <ion-card-content>
+        <img src="../assets/images/logoSA.png" alt="" class="logo">
+        <ion-row>
+          <div class="home">
+            <ion-icon name="home" [routerLink]="['/home']" size="large"></ion-icon>
+          </div>
+          <ion-title class="login">Dépôt</ion-title>
+          <div class="commission">
+            <ion-icon name="return-up-forward-outline" style="zoom:2.0;" class="ion-float-left"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-card-content>
+      <div class="bottom"></div>
+    </ion-card>
+  </div>
+  <br>
+  <form [formGroup]="depotForm" #form="ngForm">
+    <!--{{depotForm.value|json}}-->
+  <ion-segment (ionChange)="segmentChanged($event)" value="list">
+    <ion-segment-button value="list">
+      <ion-label>
+        Emetteur
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="card">
+      <ion-label>
+        Bénéficiare
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+    <br>
+  <ion-list
+    class="animate__animated animate__slideInUp animate__fast"
+    *ngIf="segment === 'list'">
+    <div [formGroupName]="'clientD'">
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">nomComplet:</ion-label>
+        <ion-input type="text" placeholder="Entrer nomComplet" class="form-control"
+        formControlName="nomComplet"></ion-input>
+          <small class="text-danger" *ngIf="depotForm.get('clientD').get('nomComplet').hasError('required') && (form.submitted || depotForm.get('clientD').get('nomComplet').touched) " >Le nomComplet est requis</small>
+          <small class="text-danger" *ngIf="depotForm.get('clientD').get('nomComplet').hasError('minlength')">
+            La longueur minimale de ce champ est de 2 caractères.
+          </small>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">Telephone:</ion-label>
+        <ion-input type="number" placeholder="Entrer telephone"  formControlName="phone"></ion-input>
+        <small class="text-danger" *ngIf="(depotForm.get('clientD').get('phone').hasError('required')|| depotForm.get('clientD').get('phone').hasError('pattern')) && (form.submitted || depotForm.get('clientD').get('phone').touched) " >Le telephone est requis</small>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">CNI:</ion-label>
+        <ion-input type="texte" placeholder="Entrer cni"  formControlName="cni"></ion-input>
+        <small class="text-danger" *ngIf="(depotForm.get('clientD').get('cni').hasError('required')|| depotForm.get('clientD').get('cni').hasError('pattern')) && (form.submitted || depotForm.get('clientD').get('cni').touched) " >Le cni est requis</small>
+      </ion-card-content>
+    </ion-card>
+  </div>
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">Montant:</ion-label>
+        <ion-input type="number" placeholder="Entrer montant"  formControlName="montant">
+        </ion-input>
+        <small class="text-danger" *ngIf="depotForm.get('montant').hasError('required') && (form.submitted || depotForm.get('montant').touched) " >Le montant est requis</small>
+        <small class="text-danger" *ngIf="depotForm.get('montant').hasError('minlength')">
+          La longueur minimale de ce champ est de 5 caractères.
+        </small>
+        <small class="text-danger" *ngIf="depotForm.get('montant').hasError('maxlength')">
+          La longueur maximale de ce champ est de 5OOOOOO caractères.
+        </small>
+      </ion-card-content>
+    </ion-card>
+    <ion-card  class="card">
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">Frais:</ion-label>
+        <ion-input placeholder="Entrer frais" value="{{frais}}" readonly></ion-input>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">Total:</ion-label>
+        <ion-input placeholder="Entrer nombre total" value="{{total}}" readonly></ion-input>
+      </ion-card-content>
+    </ion-card>
+    <div>
+      <!--<ion-button color="secondary" expand="block" shape="round">Suivant</ion-button>-->
+    </div>
+  </ion-list>
+
+  <div
+    class="animate__animated animate__slideInUp animate__fast"
+    *ngIf="segment === 'card'">
+    <div [formGroupName]="'clientR'">
+      <ion-card>
+        <ion-card-content>
+          <ion-label  style="font-size: 12px" position="stacked">nomComplet:</ion-label>
+          <ion-input type="text" placeholder="Entrer nomComplet" class="form-control"
+                     formControlName="nomComplet"></ion-input>
+          <small class="text-danger" *ngIf="depotForm.get('clientR').get('nomComplet').hasError('required') && (form.submitted || depotForm.get('clientR').get('nomComplet').touched) " >Le nomComplet est requis</small>
+          <small class="text-danger" *ngIf="depotForm.get('clientR').get('nomComplet').hasError('minlength')">
+            La longueur minimale de ce champ est de 2 caractères.
+          </small>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <ion-label  style="font-size: 12px" position="stacked">Telephone:</ion-label>
+          <ion-input type="number" placeholder="Entrer telephone"  formControlName="phone"></ion-input>
+          <small class="text-danger" *ngIf="(depotForm.get('clientR').get('phone').hasError('required')|| depotForm.get('clientR').get('phone').hasError('pattern')) && (form.submitted || depotForm.get('clientR').get('phone').touched) " >Le telephone est requis</small>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <br><br><br>
+    <div>
+      <ion-button type="submit" [disabled]="!depotForm.valid" (click)="showAlert()" color="secondary" expand="block" shape="round">Envoyer</ion-button>
+    </div>
+  </div>
+    <br>
+  </form>
+</ion-content>

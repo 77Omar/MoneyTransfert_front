@@ -1,0 +1,124 @@
+<ion-content>
+  <div class="container" position="stacked">
+    <ion-card>
+      <ion-card-content>
+        <img src="../assets/images/logoSA.png" alt="" class="logo">
+        <ion-row>
+          <div class="home">
+            <ion-icon name="home" [routerLink]="['/home']" size="large"></ion-icon>
+          </div>
+          <ion-title class="login">Retrait</ion-title>
+          <div class="commission">
+            <ion-icon name="return-up-forward-outline" style="zoom:2.0;" class="ion-float-left"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-card-content>
+      <div class="bottom"></div>
+    </ion-card>
+  </div>
+  <br>
+  <form [formGroup]="retraitForm" #form="ngForm">
+    <!--{{retraitForm.value|json}}-->
+    <ion-card>
+      <ion-card-content>
+        <ion-label  style="font-size: 12px" position="stacked">Code:</ion-label>
+        <ion-input type="texte" placeholder="Entrer code"  formControlName="code" ></ion-input>
+        <small class="text-danger" *ngIf="(retraitForm.get('code').hasError('required')|| retraitForm.get('code').hasError('pattern')) && (form.submitted || retraitForm.get('code').touched) " >Le code est requis</small>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <ion-segment (ionChange)="segmentChanged($event)" value="list">
+      <ion-segment-button value="card">
+        <ion-label>
+          Bénéficiare
+        </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="list">
+        <ion-label>
+          Emetteur
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div
+      class="animate__animated animate__slideInUp animate__fast"
+      *ngIf="segment === 'card'">
+      <div>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">CNI:</ion-label>
+            <ion-input type="texte" placeholder="Entrer cni"  formControlName="cni" ></ion-input>
+            <small class="text-danger" *ngIf="(retraitForm.get('cni').hasError('required')|| retraitForm.get('cni').hasError('pattern')) && (form.submitted || retraitForm.get('cni').touched) " >Le cni est requis</small>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">nomComplet:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.clientRetrait.nomComplet}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">Montant:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.montant}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+          <ion-card>
+            <ion-card-content>
+              <ion-label  style="font-size: 12px" position="stacked">Telephone:</ion-label>
+              <ion-card-title  *ngIf="retrait">{{retrait.clientRetrait.phone}}</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        <ion-card>
+            <ion-card-content>
+              <ion-label  style="font-size: 12px" position="stacked">Date:</ion-label>
+              <ion-card-title  *ngIf="retrait">{{retrait.date_depot | date: 'dd:MM:y'}}</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+      </div>
+      <div>
+        <!--<ion-button type="submit" color="secondary" expand="block" shape="round">Envoyer</ion-button>-->
+      </div>
+    </div>
+
+    <ion-list
+      class="animate__animated animate__slideInUp animate__fast"
+      *ngIf="segment === 'list'">
+      <div>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">CNI:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.clientDepot.cni}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">nomComplet:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.clientDepot.nomComplet}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">Montant:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.montant}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">Telephone:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.clientDepot.phone}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-label  style="font-size: 12px" position="stacked">Date:</ion-label>
+            <ion-card-title  *ngIf="retrait">{{retrait.date_depot | date: 'dd:MM:y'}}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-button type="submit" [disabled]="!retraitForm.valid" (click)="showAlert()" color="secondary" expand="block" shape="round">Envoyer</ion-button>
+      </div>
+    </ion-list>
+    <br>
+  </form>
+</ion-content>

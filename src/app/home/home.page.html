@@ -1,0 +1,132 @@
+<ion-content>
+  <ion-grid>
+    <div class="container" position="stacked">
+      <ion-card>
+        <ion-card-content>
+          <ion-row class="ion-padding header">
+            <ion-col>
+              <ion-menu-button></ion-menu-button>
+            </ion-col>
+            <ion-col>
+              <img src="assets/images/money.png" alt="">
+            </ion-col>
+            <ion-col>
+              <ion-avatar>
+                <img src="assets/images/person.png" alt="">
+              </ion-avatar>
+            </ion-col>
+          </ion-row>
+          <ion-item>
+            <ion-grid class="solde">
+              <ion-row>
+                <small>
+                  Mon solde disponible
+                </small>
+              </ion-row>
+              <ion-row id="show_Montant">
+                <ion-input *ngIf="montant" size="large" value="{{montant}} F CFA" type="text" readonly=""></ion-input>
+                <div class="eye">
+                  <a href=""><ion-icon name="eye-outline"></ion-icon></a>
+                </div>
+              </ion-row>
+              <div>
+                <span>Mise à jour le:</span>
+              </div>
+            </ion-grid>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-grid>
+
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="arrow-redo"></ion-icon>
+            <span [routerLink]="['/depot']">Dépôt</span>
+          </ion-col>
+          <ion-col>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="arrow-undo"></ion-icon>
+            <span [routerLink]="['/retrait']">Retrait</span>
+          </ion-col>
+          <ion-col>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="sync-outline"></ion-icon>
+              <span [routerLink]="['/transactions']">Mes transactions</span>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="checkmark-circle-outline"></ion-icon>
+            <span [routerLink]="['/transactions-users']">Toutes les transactions</span>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="cash"></ion-icon>
+            <span [routerLink]="['/commission']">Mes commissions</span>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="calculator"></ion-icon>
+            <span [routerLink]="['/calculateur']">Calculateur de frais</span>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-col>
+            <ion-icon class="ion-margin-horizontal" name="log-out"></ion-icon>
+            <span (click)="onLogout()">Deconnexion</span>
+            <ion-icon name="chevron-forward-outline" class="ion-float-end"></ion-icon>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
+<div>
+  <ion-grid class="btn-group ion-text-center">
+    <ion-row>
+      <ion-col size="3">
+        <ion-icon name="home" size="large" [routerLink]="['/home']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="time" size="large" [routerLink]="['/transactions-users']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="cash" size="large" [routerLink]="['/commission']"></ion-icon>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon name="calculator" size="large" [routerLink]="['/calculateur']"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
